@@ -9,11 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(alignment: .leading) {
+            Image("sigiriya")
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(20)
+            
+            HStack{
+                Text("Mount Sigiriya")
+                    .font(.title)
+                    .bold()
+                
+                
+                Spacer()
+                VStack{
+                    HStack{
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.leadinghalf.filled")
+                    }
+                    Text("(Reviews 1045)")
+                }
+                .foregroundStyle(.orange)
+                .font(.caption)
+            }
+            Text("A rich experience of Sri Lankan history & culture")
         }
         .padding()
     }
