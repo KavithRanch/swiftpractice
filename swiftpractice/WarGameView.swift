@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct WarGameView: View {
+    @State private var playerScore = 0
+    @State private var cpuScore = 0
+    @State private var playerCard = "back"
+    @State private var cpuCard = "back"
+    
     var body: some View {
         //Zstack to stack game components on top of background
         ZStack{
-            Image("background-cloth")
+            Image("background-cloth").ignoresSafeArea()
             
             // Vertical Stack for all components
             VStack{
@@ -22,14 +27,20 @@ struct WarGameView: View {
                 // Horizontal Stack for both cards
                 HStack{
                     Spacer()
-                    Image("card2")
+                    Image(playerCard)
                     Spacer()
-                    Image("card9")
+                    Image(cpuCard)
                     Spacer()
                 }
+                
                 Spacer()
                 // Deal Button
-                Image("button")
+                Button{
+                    dealCards()
+                } label:{
+                    Image("button")
+                }
+                
                 Spacer()
                 // Horizontal Stack for player and cpu titles/points count
                 HStack{
@@ -38,19 +49,37 @@ struct WarGameView: View {
                     VStack{
                         Text("Player").font(Font.headline)
                             .padding(.bottom)
-                        Text("0").font(Font.largeTitle)
+                        Text(String(playerScore)).font(Font.largeTitle)
                     }
                     Spacer()
                     VStack{
                         Text("CPU").font(Font.headline)
                             .padding(.bottom)
-                        Text("0").font(Font.largeTitle)
+                        Text(String(cpuScore)).font(Font.largeTitle)
                     }
                     Spacer()
                 }
                 .foregroundStyle(Color(.white))
                 Spacer()
             }
+        }
+    }
+    
+    func dealCards(){
+        let playerNum = Int.random(in: 2...14)
+        let cpuNum = Int.random(in: 2...14)
+        playerCard = "card" + String(playerNum)
+        cpuCard = "card" + String(cpuNum)
+        
+        updateScore(playerNum: playerNum, cpuNum: cpuNum)
+    }
+    
+    func updateScore(playerNum: Int, cpuNum: Int){
+        if playerNum > cpuNum{
+            playerScore += 1
+        }
+        else if playerNum < cpuNum{
+            cpuScore += 1
         }
     }
 }
