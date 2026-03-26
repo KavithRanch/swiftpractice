@@ -9,28 +9,47 @@ import SwiftUI
 
 struct WarGameView: View {
     var body: some View {
+        //Zstack to stack game components on top of background
         ZStack{
             Image("background-cloth")
             
-            VStack(spacing:45){
+            // Vertical Stack for all components
+            VStack{
+                // Logo
+                Spacer()
                 Image("logo")
-                HStack(spacing: 40){
+                Spacer()
+                // Horizontal Stack for both cards
+                HStack{
+                    Spacer()
                     Image("card2")
+                    Spacer()
                     Image("card9")
+                    Spacer()
                 }
+                Spacer()
+                // Deal Button
                 Image("button")
-                
-                HStack(spacing:90){
-                    VStack(spacing:25){
-                        Text("Player").font(Font.title2)
-                        Text("0").font(Font.largeTitle.bold())
+                Spacer()
+                // Horizontal Stack for player and cpu titles/points count
+                HStack{
+                    // Two Vertical Stacks for Player and CPU respectively
+                    Spacer()
+                    VStack{
+                        Text("Player").font(Font.headline)
+                            .padding(.bottom)
+                        Text("0").font(Font.largeTitle)
                     }
-                    VStack(spacing:25){
-                        Text("CPU").font(Font.title2)
-                        Text("0").font(Font.largeTitle.bold())
+                    Spacer()
+                    VStack{
+                        Text("CPU").font(Font.headline)
+                            .padding(.bottom)
+                        Text("0").font(Font.largeTitle)
                     }
+                    Spacer()
                 }
                 .foregroundStyle(Color(.white))
+                Spacer()
             }
         }
     }
